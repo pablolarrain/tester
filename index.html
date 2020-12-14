@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -329,31 +330,33 @@ En Chile el término ha sido utilizado por el mundo socio ambiental para mencion
             </div>
         </div>
         <!--JavaScript para el <canvas></canvas>, simplificado con p5.js-->
-      var ctx = canvas.getContext("2d"),
-    img = new Image,
-    radius = 40;
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js" integrity="sha512-WIklPM6qPCIp6d3fSSr90j+1unQHUOoWDS4sdTiR8gxUTnyZ8S2Mr8e10sKKJ/bhJgpAa/qG068RDkg6fIlNFA==" crossorigin="anonymous"></script>
+        <script>
+            // parto creando tres variables
+            var box = document.querySelector("#p5");
+            var w = box.clientWidth;
+            var h = (w / 16) * 9;
+            // defino una altura
+            box.style.color = h + "px";
+            // en caso quieran asomarse a la consola
+            console.log(w);
+            console.log(h);
+            // comenzamos con p5.js
+            function setup() {
+                var canvas = createCanvas(w, h);
+                canvas.parent("#p5");
+            }
 
-img.onload = setup;
-img.src = "http://i.imgur.com/bnAEEXq.jpg";
+            function draw() {
+                background(200);
+                fill(0);
+                ellipse(mouseX, mouseY, 50, 50);
+            }
 
-function setup() {
-  
-  // set image as pattern for fillStyle
-  ctx.fillStyle = ctx.createPattern(this, "no-repeat");
-  
-  // for demo only, reveals image while mousing over canvas
-  canvas.onmousemove = function(e) {
-    var r = this.getBoundingClientRect(),
-        x = e.clientX - r.left,
-        y = e.clientY - r.top;
-    
-    ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.arc(x, y, radius, 0, 2*Math.PI);
-    ctx.fill();
-  };
-}
-<canvas id=canvas width=900 height=600></canvas>
+            function windowResized() {
+                resizeCanvas(w, h);
+            }
+        </script>
         <!--JavaScript para los 286 feather icons - https://feathericons.com/-->
         <script src="https://unpkg.com/feather-icons"></script>
         <script>
